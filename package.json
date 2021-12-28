@@ -1,6 +1,5 @@
 {
   "name": "lynx-menu",
-  "id": "ar.net.lynx.os.menu",
   "version": "0.0.1",
   "description": "Menu for Lynx OS",
   "domain": "lynxos",
