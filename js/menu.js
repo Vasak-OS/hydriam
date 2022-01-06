@@ -5,11 +5,11 @@ winMenu.setAlwaysOnTop(true);
 winMenu.setShowInTaskbar(false);
 winMenu.setResizable(false);
 
-exec('python', ["/usr/share/Lynx/lynx-menu/scripts/setMenu.py"]);
+exec('python', ["/usr/share/Lynx/lynx-desktop-service/Setters/setMenu.py"]);
 
 // Add Windows Data
 setIMG();
-var menuApps = JSON.parse(execSynx('python', ["/usr/share/Lynx/lynx-menu/scripts/getMenu.py"])
+var menuApps = JSON.parse(execSynx('python', ["/usr/share/Lynx/lynx-desktop-service/Lynx/getMenu.py"])
   .stdout
   .toString()
   .replaceAll('\'s', 's') // fix to comments user 's 
@@ -27,7 +27,7 @@ retCategories();
 initMenu();
 
 function openApp(appPath){
-  exec('/usr/share/Lynx/lynx-menu/scripts/runapp', [appPath]);
+  exec('/usr/share/Lynx/lynx-desktop-service/scripts/runapp', [appPath]);
   winMenu.close();
 }
 
