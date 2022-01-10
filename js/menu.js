@@ -5,7 +5,7 @@ winMenu.setAlwaysOnTop(true);
 winMenu.setShowInTaskbar(false);
 winMenu.setResizable(false);
 
-exec('python', ["/usr/share/Lynx/lynx-desktop-service/Setters/setMenu.py"]);
+exec('python', ["/usr/share/Lynx/lynx-desktop-service/Setters/setMenu.py", `${process.pid.toString()}`]);
 
 // Add Windows Data
 setIMG();
@@ -14,8 +14,6 @@ var menuApps = JSON.parse(execSynx('python', ["/usr/share/Lynx/lynx-desktop-serv
   .toString()
   .replaceAll('\'s', 's') // fix to comments user 's 
   .replaceAll('\'', '\"'));
-
-console.trace(`Scripts - getMenu [Trace] - ${menuApps}`);
 
 winMenu.focus();
 
