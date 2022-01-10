@@ -3,7 +3,7 @@ const execSynx = require('child_process').spawnSync;
 const exec = require('child_process').spawn;
 const process = require('process');
 
-function setIMG(){
+async function setIMG(){
   elem = document.getElementById('imgDiv');
   elem.innerHTML = `
     <img

@@ -21,12 +21,16 @@ winMenu.on('blur', function (evt) {
   winMenu.close();
 });
   
-retCategories();
-initMenu();
+drawMenu();
 
 function openApp(appPath){
   exec('/usr/share/Lynx/lynx-desktop-service/scripts/runapp', [appPath]);
   winMenu.close();
+}
+
+async function drawMenu() {
+  retCategories();
+  initMenu();
 }
 
 function retCategories(){
