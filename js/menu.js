@@ -24,7 +24,7 @@ winMenu.on('blur', function (evt) {
 drawMenu();
 
 function openApp(appPath){
-  exec('/usr/share/Lynx/lynx-desktop-service/scripts/runapp', [appPath]);
+  exec('/usr/share/Lynx/lynx-desktop-service/script/runapp', [appPath]);
   winMenu.close();
 }
 
