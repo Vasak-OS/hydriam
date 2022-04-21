@@ -12,7 +12,6 @@ setIMG();
 var menuApps = JSON.parse(execSynx('python', ["/usr/share/Lynx/lynx-desktop-service/Lynx/getMenu.py"])
   .stdout
   .toString()
-  .replaceAll('\'s', 's') // fix to comments user 's 
   .replaceAll('\'', '\"'));
 
 winMenu.focus();
