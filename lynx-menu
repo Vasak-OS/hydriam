@@ -1,2 +1,2 @@
 #!/bin/bash
-lynx-nw /usr/share/Lynx/lynx-menu/
+nw /usr/share/Lynx/lynx-menu/ --enable-transparent-visuals --disable-gpu
