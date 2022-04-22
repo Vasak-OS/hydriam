@@ -3,7 +3,6 @@
   "version": "0.0.1",
   "description": "Menu for Lynx OS",
   "domain": "lynxos",
-  "single-instance": true,
   "chromium-args": "--disable-accelerated-video --force-cpu-draw",
   "main": "index.html",
   "scripts": {
