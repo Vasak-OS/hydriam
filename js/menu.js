@@ -4,12 +4,14 @@ const winMenu = nw.Window.get();
 winMenu.setAlwaysOnTop(true);
 winMenu.setShowInTaskbar(false);
 winMenu.setResizable(false);
+winMenu.focus();
+winMenu.setPosition("center");
 
-exec('python', ["/usr/share/Lynx/lynx-desktop-service/Setters/setMenu.py", `${process.pid.toString()}`]);
+exec('python', ['/usr/share/Lynx/lynx-desktop-service/Setters/setMenu.py', `${process.pid.toString()}`]);
 
 // Add Windows Data
 setIMG();
-var menuApps = JSON.parse(execSynx('python', ["/usr/share/Lynx/lynx-desktop-service/Lynx/getMenu.py"])
+var menuApps = JSON.parse(execSynx('python', ['/usr/share/Lynx/lynx-desktop-service/Lynx/getMenu.py'])
   .stdout
   .toString()
   .replaceAll('\'', '\"'));
@@ -33,12 +35,12 @@ async function drawMenu() {
 }
 
 function retCategories(){
-  let elemHTML = document.getElementById("menu-category");
+  let elemHTML = document.getElementById('menu-category');
   let cats = ``;
   for (let category in menuApps){
     let catName = category.replaceAll(" ", "-").toLowerCase();
     cats = cats.concat(`<li class="nav-item" role="presentation">`);
-    if (catName == "accesorios") {
+    if (catName == 'accesorios') {
       cats = cats.concat(`<button class="nav-link active" data-bs-toggle="tab" role="tab" aria-selected="true" data-bs-target="#${catName}" id="${catName}-tab">
                             <img src="file://${menuApps[category].icon}" class="img-fluid category-img" />`);
     } else {
@@ -54,7 +56,7 @@ function initMenu(){
   let elemHTML = document.getElementById('menu-content');
   let menuHTML = ``;
   for (let category in menuApps){
-    let formCat = category.replaceAll(" ", "-").toLowerCase();
+    let formCat = category.replaceAll(' ', '-').toLowerCase();
     if (formCat == 'accesorios'){
       menuHTML = menuHTML.concat(`
       <div class="tab-pane fade show active" id="${formCat}" role="tabpanel" aria-labelledby="${formCat}-tab">
