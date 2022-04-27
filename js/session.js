@@ -1,5 +1,5 @@
 async function shutdown(){
-    exec('systemctl poweroff');
+    exec('systemctl', ['poweroff']);
     winMenu.close();
 }
 
@@ -9,11 +9,11 @@ async function logout(){
 }
 
 async function reboot(){
-    exec('systemctl reboot');
+    exec('systemctl', ['reboot']);
     winMenu.close();
 }
 
 async function suspend(){
-    exec('systemctl suspend');
+    exec('systemctl', ['suspend']);
     winMenu.close();
 }
