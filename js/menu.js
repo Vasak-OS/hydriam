@@ -1,4 +1,5 @@
 const winMenu = nw.Window.get();
+let searchData = [];
 
 // Set windows Properties
 winMenu.setAlwaysOnTop(true);
@@ -11,7 +12,7 @@ exec('python', ['/usr/share/Lynx/lynx-desktop-service/Setters/setMenu.py', `${pr
 
 // Add Windows Data
 setIMG();
-var menuApps = JSON.parse(execSynx('python', ['/usr/share/Lynx/lynx-desktop-service/Lynx/getMenu.py'])
+const menuApps = JSON.parse(execSynx('python', ['/usr/share/Lynx/lynx-desktop-service/Lynx/getMenu.py'])
   .stdout
   .toString()
   .replaceAll('\'', '\"'));
@@ -23,10 +24,18 @@ winMenu.on('blur', function (evt) {
 });
   
 drawMenu();
+setSearchData();
 
 function openApp(appPath){
   exec('/usr/share/Lynx/lynx-desktop-service/script/runapp', [appPath]);
   winMenu.close();
+}
+
+async function setSearchData(){
+  for (let category in menuApps){
+    let appMenu = menuApps[category];
+    searchData = searchData.concat(appMenu['apps']);
+  }
 }
 
 async function drawMenu() {
