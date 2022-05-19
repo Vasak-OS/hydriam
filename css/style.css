@@ -25,6 +25,10 @@
   max-height: 100px;
 }
 
+.btn-session{
+  margin-top: 55px;
+}
+
 #user-info{
   margin-top: -65px;
 }
