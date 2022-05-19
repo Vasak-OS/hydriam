@@ -1,5 +1,4 @@
 const winMenu = nw.Window.get();
-let searchData = [];
 
 // Set windows Properties
 winMenu.setAlwaysOnTop(true);
@@ -24,18 +23,19 @@ winMenu.on('blur', function (evt) {
 });
   
 drawMenu();
-setSearchData();
 
 function openApp(appPath){
   exec('/usr/share/Lynx/lynx-desktop-service/script/runapp', [appPath]);
   winMenu.close();
 }
 
-async function setSearchData(){
+async function getSearchData(){
+  let sData = [];
   for (let category in menuApps){
     let appMenu = menuApps[category];
-    searchData = searchData.concat(appMenu['apps']);
+    sData = sData.concat(appMenu['apps']);
   }
+  return sData;
 }
 
 async function drawMenu() {

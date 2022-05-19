@@ -1,3 +1,5 @@
+const searchData = await getSearchData();
+
 function searchApps(){
     const filter = document.getElementById('search').value;
     const matchs = searchData.filter(app => {
