@@ -20,7 +20,7 @@
 }
 
 .lynx-profile-picture{
-  border-radius: var(--system-border);
+  border-radius: 50%;
   max-width: 100px;
   max-height: 100px;
 }
