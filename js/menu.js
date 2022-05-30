@@ -51,10 +51,10 @@ function retCategories(){
     cats = cats.concat(`<li class="nav-item" role="presentation">`);
     if (catName == 'accesorios') {
       cats = cats.concat(`<button class="nav-link active" data-bs-toggle="tab" role="tab" aria-selected="true" data-bs-target="#${catName}" id="${catName}-tab">
-                            <img src="file://${menuApps[category].icon}" class="img-fluid category-img" />`);
+                            <img src="file://${menuApps[category].icon}" data-bs-toggle="tooltip" data-bs-placement="left" title="${catName}" class="img-fluid category-img" />`);
     } else {
       cats = cats.concat(`<button class="nav-link" data-bs-toggle="tab" role="tab" aria-selected="false" data-bs-target="#${catName}" id="${catName}-tab">
-                            <img src="file://${menuApps[category].icon}" class="img-fluid category-img" />`);
+                            <img src="file://${menuApps[category].icon}" data-bs-toggle="tooltip" data-bs-placement="left" title="${catName}" class="img-fluid category-img" />`);
     } 
     cats = cats.concat(`</button></li>`);
   }
