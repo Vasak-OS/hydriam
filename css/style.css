@@ -21,16 +21,16 @@
 
 .lynx-profile-picture{
   border-radius: 50%;
-  max-width: 100px;
-  max-height: 100px;
+  max-width: 90px;
+  max-height: 90px;
 }
 
 .btn-session{
-  margin-top: 55px;
+  margin-top: 40px;
 }
 
 #user-info{
-  margin-top: -65px;
+  margin-top: -55px;
 }
 
 .form-control{
