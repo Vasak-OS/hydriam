@@ -49,7 +49,7 @@ function retCategories(){
   for (let category in menuApps){
     let catName = category.replaceAll(" ", "-").toLowerCase();
     cats = cats.concat(`<li class="nav-item" role="presentation">`);
-    if (catName == 'accesorios') {
+    if (catName == 'accessories') {
       cats = cats.concat(`<button class="nav-link active" data-bs-toggle="tab" role="tab" aria-selected="true" data-bs-target="#${catName}" id="${catName}-tab">
                             <img src="file://${menuApps[category].icon}" data-bs-toggle="tooltip" data-bs-placement="left" title="${catName}" class="img-fluid category-img" />`);
     } else {
@@ -66,7 +66,7 @@ function initMenu(){
   let menuHTML = ``;
   for (let category in menuApps){
     let formCat = category.replaceAll(' ', '-').toLowerCase();
-    if (formCat == 'accesorios'){
+    if (formCat == 'accessories'){
       menuHTML = menuHTML.concat(`
       <div class="tab-pane fade show active" id="${formCat}" role="tabpanel" aria-labelledby="${formCat}-tab">
         <div class="container-fluid">
