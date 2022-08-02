@@ -1,4 +1,5 @@
 import { createApp } from 'vue';
+import UserInfo from './components/UserInfo.js';
 
 const app = createApp({
     async beforeMount() {
@@ -18,28 +19,28 @@ const app = createApp({
     template: `
         <div class="row">
 
-        
+            <UserInfo />
 
-        <!-- Search section -->
-        <div class="col-12" id="searc-div">
-            <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Search" aria-label="Search" id="search"
-                onchange="searchApps()" aria-describedby="icon-search" />
-            <span class="input-group-text" id="icon-search">🔍</span>
+            <!-- Search section -->
+            <div class="col-12" id="searc-div">
+                <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Search" aria-label="Search" id="search"
+                    onchange="searchApps()" aria-describedby="icon-search" />
+                <span class="input-group-text" id="icon-search">🔍</span>
+                </div>
             </div>
-        </div>
 
-        <!-- Menu section -->
-        <div class="col-12">
-            <div class="tab-content" id="menu-content">
+            <!-- Menu section -->
+            <div class="col-12">
+                <div class="tab-content" id="menu-content">
+                </div>
+                <ul class="nav nav-pills nav-justified" id="menu-category" role="tablist"></ul>
             </div>
-            <ul class="nav nav-pills nav-justified" id="menu-category" role="tablist"></ul>
-        </div>
 
         </div>
     `,
     components: {
-
+        UserInfo
     }
 });
 
