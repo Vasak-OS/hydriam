@@ -1,11 +1,11 @@
 export default {
-    props:{
+    props: {
         title: String,
         img: String,
-        cmd:String
+        cmd: String
     },
-    methods:{
-        acction(){
+    methods: {
+        acction() {
             this.$exec(this.cmd);
             this.$win.close();
         }

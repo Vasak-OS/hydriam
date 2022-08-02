@@ -10,7 +10,7 @@ const app = createApp({
         this.$win.focus();
         this.$win.setPosition("center");
 
-        this.$exec('python', ['/usr/share/Lynx/lynx-desktop-service/Setters/setMenu.py', `${this.pid.toString()}`]);
+        this.$exec('python', ['/usr/share/Lynx/lynx-desktop-service/Setters/setMenu.py', this.pid]);
 
         this.$win.on('blur', function (evt) {
             this.$win.close();
@@ -44,9 +44,10 @@ const app = createApp({
     }
 });
 
-app.config.globalProperties.$execSynx = require('child_process').spawnSync;
+app.config.globalProperties.$execSync = require('child_process').spawnSync;
 app.config.globalProperties.$exec = require('child_process').spawn;
 app.config.globalProperties.$win = nw.Window.get();
-app.config.globalProperties.$pid = process.pid;
+app.config.globalProperties.$pid = process.pid.toString();
+app.config.globalProperties.$homePath = nw.App.dataPath.concat('/../../../');
 
 app.mount('#menu');
