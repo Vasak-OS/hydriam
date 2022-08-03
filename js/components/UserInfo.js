@@ -6,9 +6,6 @@ export default {
             homePath: this.$homePath
         }
     },
-    mounted() {
-        console.log(this.homePath)
-    },
     template: `
         <div id="user-info" class="col-12 text-center">
             <div class="container-fluid">
