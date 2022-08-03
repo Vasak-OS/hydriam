@@ -30,7 +30,7 @@ const app = createApp({
 
         this.$exec('python', ['/usr/share/Lynx/lynx-desktop-service/Setters/setMenu.py', this.pid]);
 
-        this.$win.on('blur', function (evt) {
+        this.$win.on('blur', (evt) => {
             this.$win.close();
         });
     },
