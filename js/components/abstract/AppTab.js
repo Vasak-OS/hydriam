@@ -1,3 +1,5 @@
+import AppButton from "./AppButton.js";
+
 export default {
     props: {
         category: String,
@@ -15,9 +17,14 @@ export default {
     <div class="tab-pane fade" :class="{active:isActive, show:isActive}" :id="catName" role="tabpanel" :aria-labelledby="catName + '-tab'">
         <div class="container-fluid">
           <div class="row">
-            {{catName}} {{data}}
+            <template v-for="app in data.apps">
+                <AppButton :app="app" />
+            <template>
           </div>
         </div>
     </div>
-    `
+    `,
+    components: {
+        AppButton
+    }
 }

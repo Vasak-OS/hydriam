@@ -19,7 +19,7 @@ export default {
             </ul>
         </div>
     `,
-    components:{
+    components: {
         AppTab,
         CategoryPill
     }
