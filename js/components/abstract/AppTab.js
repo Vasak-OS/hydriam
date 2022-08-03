@@ -19,7 +19,7 @@ export default {
           <div class="row">
             <template v-for="app in data.apps">
                 <AppButton :app="app" />
-            <template>
+            </template>
           </div>
         </div>
     </div>

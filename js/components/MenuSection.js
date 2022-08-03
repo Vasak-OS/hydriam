@@ -14,7 +14,7 @@ export default {
             </div>
             <ul class="nav nav-pills nav-justified" id="menu-category" role="tablist">
                 <template v-for="(value, key) in menuData">
-                    <CategoryPill :category="key" :image="value.icon" />
+                    <CategoryPill :category="key" :image="value.icon" :description="value.description" />
                 </template>
             </ul>
         </div>
