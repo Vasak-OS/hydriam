@@ -1,11 +1,11 @@
 export default {
     props: {
-        catName: String,
+        category: String,
         image: String
     },
-    calculate: {
+    computed: {
         name() {
-            return this.catName.replaceAll(" ", "-").toLowerCase();
+            return this.category.replaceAll(" ", "-").toLowerCase();
         },
         isActive() {
             return this.name === 'accessories'
@@ -13,8 +13,8 @@ export default {
     },
     template: `
     <li class="nav-item" role="presentation">
-        <button class="nav-link active" :class="{active:isActive}" data-bs-toggle="tab" role="tab" aria-selected="true" :data-bs-target="'#' + name" :id="name + '-tab'">
-            <img :src="'file://' + image" data-bs-toggle="tooltip" data-bs-placement="left" :title="name" class="img-fluid category-img" />
+        <button class="nav-link" :class="{active:isActive}" data-bs-toggle="tab" role="tab" aria-selected="true" :data-bs-target="'#' + this.name" :id="this.name + '-tab'">
+            <img :src="'file://' + image" data-bs-toggle="tooltip" data-bs-placement="left" :title="this.name" class="img-fluid category-img" />
         </button>
     </li>
     `
