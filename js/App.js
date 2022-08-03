@@ -64,3 +64,17 @@ app.config.globalProperties.$pid = process.pid.toString();
 app.config.globalProperties.$homePath = nw.App.dataPath.concat('/../../../');
 
 app.mount('#menu');
+
+document.addEventListener('keyup', keyUpEvents);
+
+function keyUpEvents(evt) {
+
+    switch (evt.code) {
+        case 'Escape':
+            app.config.globalProperties.$win.close();
+            break;
+        default:
+            break;
+    }
+
+}
