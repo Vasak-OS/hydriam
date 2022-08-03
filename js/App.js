@@ -1,4 +1,5 @@
 import { createApp } from 'vue';
+import MenuSection from './components/MenuSection.js';
 import Search from './components/Search.js';
 import UserInfo from './components/UserInfo.js';
 
@@ -44,16 +45,13 @@ const app = createApp({
                 {{apps}}
             </template>
             <template v-else>
-                <div class="col-12">
-                    <div class="tab-content" id="menu-content">
-                    </div>
-                    <ul class="nav nav-pills nav-justified" id="menu-category" role="tablist"></ul>
-                </div>
+                <MenuSection :menuData="menuData" />
             </template>
 
         </div>
     `,
     components: {
+        MenuSection,
         Search,
         UserInfo
     }
