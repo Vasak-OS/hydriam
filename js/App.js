@@ -1,7 +1,24 @@
 import { createApp } from 'vue';
+import Search from './components/Search.js';
 import UserInfo from './components/UserInfo.js';
 
 const app = createApp({
+    data() {
+        return {
+            filter: '',
+            menuData: JSON.parse(this.$execSync('python', ['/usr/share/Lynx/lynx-desktop-service/Lynx/getMenu.py']).stdout.toString().replaceAll('\'', '\"'))
+        }
+    },
+    computed: {
+        apps() {
+            let apps = [];
+            for (let category in this.menuData) {
+                const appMenu = this.menuData[category];
+                apps = apps.concat(appMenu['apps']);
+            }
+            return apps;
+        }
+    },
     async beforeMount() {
         // Set windows Properties
         this.$win.setAlwaysOnTop(true);
@@ -20,26 +37,24 @@ const app = createApp({
         <div class="row">
 
             <UserInfo />
-
-            <!-- Search section -->
-            <div class="col-12" id="searc-div">
-                <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Search" aria-label="Search" id="search"
-                    onchange="searchApps()" aria-describedby="icon-search" />
-                <span class="input-group-text" id="icon-search">🔍</span>
-                </div>
-            </div>
-
+            <Search v-model:filter="filter" />
             <!-- Menu section -->
-            <div class="col-12">
-                <div class="tab-content" id="menu-content">
+            <template v-if="filter !== ''">
+                Filtrado {{filter}}
+                {{apps}}
+            </template>
+            <template v-else>
+                <div class="col-12">
+                    <div class="tab-content" id="menu-content">
+                    </div>
+                    <ul class="nav nav-pills nav-justified" id="menu-category" role="tablist"></ul>
                 </div>
-                <ul class="nav nav-pills nav-justified" id="menu-category" role="tablist"></ul>
-            </div>
+            </template>
 
         </div>
     `,
     components: {
+        Search,
         UserInfo
     }
 });
