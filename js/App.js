@@ -1,4 +1,5 @@
 import { createApp } from 'vue';
+import FilterTab from './components/FilterTab.js';
 import MenuSection from './components/MenuSection.js';
 import Search from './components/Search.js';
 import UserInfo from './components/UserInfo.js';
@@ -39,10 +40,8 @@ const app = createApp({
 
             <UserInfo />
             <Search v-model:filter="filter" />
-            <!-- Menu section -->
             <template v-if="filter !== ''">
-                Filtrado {{filter}}
-                {{apps}}
+                <FilterTab :apps="apps" :filter="filter" />
             </template>
             <template v-else>
                 <MenuSection :menuData="menuData" />
@@ -51,6 +50,7 @@ const app = createApp({
         </div>
     `,
     components: {
+        FilterTab,
         MenuSection,
         Search,
         UserInfo
