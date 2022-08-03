@@ -1,113 +1,40 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>lynx-menu</title>
 
-    <link href="file:///usr/share/Lynx/lynx-bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="file:///usr/share/Lynx/lynx-base-css/variables.css" />
-    <link rel="stylesheet" href="file:///usr/share/Lynx/lynx-base-css/global.css" />
-    <link rel="stylesheet" href="file:///usr/share/Lynx/lynx-menu/css/style.css" />
-  </head>
-  <body>
-    <div id="menu" class="container-fluid">
-      <div class="row">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <!-- Informacion del usuario -->
-        <div id="user-info" class="col-12 text-center">
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col-4 text-center">
-                <a
-                  data-bs-toggle="tooltip"
-                  data-bs-placement="left"
-                  title="Shutdown"
-                  href="#"
-                  class="btn btn-primary btn-session"
-                  onclick="shutdown();">
-                  <img
-                    src="file:///usr/share/Lynx/lynx-menu/img/shutdown.svg"
-                    class="img-fluid" />
-                </a>
-                <a
-                  data-bs-toggle="tooltip"
-                  data-bs-placement="left"
-                  title="Reboot"
-                  href="#"
-                  class="btn btn-primary btn-session"
-                  onclick="reboot();">
-                  <img
-                    src="file:///usr/share/Lynx/lynx-menu/img/reboot.svg"
-                    class="img-fluid" />
-                </a>
-              </div>
-              <div class="col-4" id="imgDiv">
-                <img
-                  src=""
-                  class="img-fluid user-img"
-                  id="user-img"
-                  alt="user" />
-              </div>
-              <div class="col-4 text-center">
-                <a
-                  data-bs-toggle="tooltip"
-                  data-bs-placement="left"
-                  title="Logout" 
-                  href="#" 
-                  class="btn btn-primary btn-session" 
-                  onclick="logout();">
-                  <img
-                    src="file:///usr/share/Lynx/lynx-menu/img/logout.svg"
-                    class="img-fluid" />
-                </a>
-                <a
-                  data-bs-toggle="tooltip"
-                  data-bs-placement="left"
-                  title="Suspend"
-                  href="#"
-                  class="btn btn-primary btn-session"
-                  onclick="suspend();">
-                  <img
-                    src="file:///usr/share/Lynx/lynx-menu/img/suspend.svg"
-                    class="img-fluid" />
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
+  <title>lynx-menu</title>
 
-        <!-- Search section -->
-        <div class="col-12" id="searc-div">
-          <div class="input-group mb-3">
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Search"
-              aria-label="Search"
-              id="search"
-              onchange="searchApps()"
-              aria-describedby="icon-search" />
-            <span class="input-group-text" id="icon-search">🔍</span>
-          </div>
-        </div>
+  <link href="file:///usr/share/Lynx/lynx-bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="file:///usr/share/Lynx/lynx-base-css/variables.css" />
+  <link rel="stylesheet" href="file:///usr/share/Lynx/lynx-base-css/global.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
 
-        <!-- Menu section -->
-        <div class="col-12">
-          <div class="tab-content" id="menu-content">
-          </div>
-          <ul class="nav nav-pills nav-justified" id="menu-category" role="tablist"></ul>
-        </div>
+<body>
+  <div id="menu" class="container-fluid"></div>
 
-      </div>
-    </div>
+  <!--Dev-->
+  <!-- <script type="importmap">
+		{
+		  "imports": {
+			"vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+		  }
+		}
+	</script> -->
+  <!-- Prod -->
+  <script type="importmap">
+		{
+		  "imports": {
+			"vue": "file:///usr/share/Lynx/lynx-vue/vue.esm-browser.prod.js"
+		  }
+		}
+	</script>
+  <script src="file:///usr/share/Lynx/lynx-bootstrap/js/bootstrap.min.js"></script>
+  <script type="module" src="/js/App.js"></script>
 
-    <script src="file:///usr/share/Lynx/lynx-bootstrap/js/bootstrap.min.js"></script>
-    <script src="file:///usr/share/Lynx/lynx-menu/js/global.js"></script>
-    <script src="file:///usr/share/Lynx/lynx-menu/js/menu.js"></script>
-    <script src="file:///usr/share/Lynx/lynx-menu/js/search.js"></script>
-    <script src="file:///usr/share/Lynx/lynx-menu/js/session.js"></script>
-		<script src="file:///usr/share/Lynx/lynx-menu/js/shorcutMenu.js"></script>
-  </body>
+</body>
+
 </html>
