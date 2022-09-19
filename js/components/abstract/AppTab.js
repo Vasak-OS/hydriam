@@ -10,7 +10,7 @@ export default {
 			return this.category.replaceAll(' ', '-').toLowerCase();
 		},
 		isActive() {
-			return this.catName === 'accessories';
+			return this.catName == 'accessories';
 		},
 	},
 	template: `
