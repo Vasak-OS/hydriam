@@ -1,8 +1,8 @@
 export default {
-    props: {
-        filter: String
-    },
-    template: `
+	props: {
+		filter: String
+	},
+	template: `
         <div class="col-12" id="searc-div">
             <div class="input-group mb-3">
                 <input type="text" class="form-control" placeholder="Search" aria-label="Search" id="search"
@@ -11,4 +11,4 @@ export default {
             </div>
         </div>
     `
-}
+};

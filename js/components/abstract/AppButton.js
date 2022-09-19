@@ -1,14 +1,14 @@
 export default {
-    props: {
-        app: Object
-    },
-    methods: {
-        openApp() {
-            this.$exec('/usr/share/Lynx/lynx-desktop-service/script/runapp', [this.app.path]);
-            this.$win.close();
-        }
-    },
-    template: `
+	props: {
+		app: Object
+	},
+	methods: {
+		openApp() {
+			this.$exec('/usr/share/Lynx/lynx-desktop-service/script/runapp', [this.app.path]);
+			this.$win.close();
+		}
+	},
+	template: `
         <button class="btn col-2 btn-app"
             data-bs-toggle="tooltip"
             data-bs-placement="top"
@@ -20,4 +20,4 @@ export default {
             <span style='display:none;'>{{app.keywords}}</span>
         </button>
     `
-}
+};

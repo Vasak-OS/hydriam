@@ -1,16 +1,16 @@
-import AppButton from "./abstract/AppButton.js";
+import AppButton from './abstract/AppButton.js';
 
 export default {
-    props: {
-        apps: Array,
-        filter: String
-    },
-    computed: {
-        appsFiltred() {
-            return this.apps.filter(app => app.name.toLowerCase().includes(this.filter) || app.description.toLowerCase().includes(this.filter))
-        }
-    },
-    template: `
+	props: {
+		apps: Array,
+		filter: String
+	},
+	computed: {
+		appsFiltred() {
+			return this.apps.filter(app => app.name.toLowerCase().includes(this.filter) || app.description.toLowerCase().includes(this.filter));
+		}
+	},
+	template: `
         <div class="col-12">
             <div class="tab-content" id="menu-content">
                 <div class="container-fluid">
@@ -23,7 +23,7 @@ export default {
             </div>
         </div>
     `,
-    components: {
-        AppButton
-    }
-}
+	components: {
+		AppButton
+	}
+};

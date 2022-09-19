@@ -1,11 +1,11 @@
-import AppTab from "./abstract/AppTab.js";
-import CategoryPill from "./abstract/CategoryPill.js";
+import AppTab from './abstract/AppTab.js';
+import CategoryPill from './abstract/CategoryPill.js';
 
 export default {
-    props: {
-        menuData: Object
-    },
-    template: `
+	props: {
+		menuData: Object
+	},
+	template: `
         <div class="col-12">
             <div class="tab-content" id="menu-content">
                 <template v-for="(value, key) in menuData">
@@ -19,8 +19,8 @@ export default {
             </ul>
         </div>
     `,
-    components: {
-        AppTab,
-        CategoryPill
-    }
-}
+	components: {
+		AppTab,
+		CategoryPill
+	}
+};

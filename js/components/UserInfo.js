@@ -1,12 +1,12 @@
-import SessionButtom from "./abstract/SessionButtom.js"
+import SessionButtom from './abstract/SessionButtom.js';
 
 export default {
-    data() {
-        return {
-            homePath: this.$homePath
-        }
-    },
-    template: `
+	data() {
+		return {
+			homePath: this.$homePath
+		};
+	},
+	template: `
         <div id="user-info" class="col-12 text-center">
             <div class="container-fluid">
                 <div class="row">
@@ -25,7 +25,7 @@ export default {
             </div>
         </div>
     `,
-    components: {
-        SessionButtom
-    }
-}
+	components: {
+		SessionButtom
+	}
+};
