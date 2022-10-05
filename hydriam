@@ -1,2 +1,2 @@
 #!/bin/bash
-nw /usr/share/Lynx/lynx-menu/ --enable-transparent-visuals --disable-gpu &
+nw /usr/share/hydriam/ --enable-transparent-visuals --disable-gpu &
