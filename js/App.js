@@ -11,7 +11,7 @@ const app = createApp({
 	data() {
 		return {
 			filter: '',
-			menuData: JSON.parse(this.$execSync('python', ['/usr/share/Lynx/lynx-desktop-service/Lynx/getMenu.py']).stdout.toString().replaceAll('\'', '\"'))
+			menuData: JSON.parse(this.$execSync('python', ['/usr/share/vasak-desktop-service/Vasak/getMenu.py']).stdout.toString().replaceAll('\'', '\"'))
 		};
 	},
 	computed: {
@@ -32,7 +32,7 @@ const app = createApp({
 		this.$win.focus();
 		this.$win.setPosition('center');
 
-		this.$exec('python', ['/usr/share/Lynx/lynx-desktop-service/Setters/setMenu.py', this.pid]);
+		this.$exec('python', ['/usr/share/vasak-desktop-service/Setters/setMenu.py', this.pid]);
 
 		this.$win.on('blur', (evt) => {
 			this.$win.close();

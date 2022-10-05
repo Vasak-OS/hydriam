@@ -4,7 +4,7 @@ export default {
 	},
 	methods: {
 		openApp() {
-			this.$exec('/usr/share/Lynx/lynx-desktop-service/script/runapp', [this.app.path]);
+			this.$exec('/usr/share/vasak-desktop-service/script/runapp', [this.app.path]);
 			this.$win.close();
 		}
 	},
