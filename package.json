@@ -3,7 +3,6 @@
   "version": "0.0.1",
   "description": "Hydriam is the official Application Launcher (or menu) of Vasak OS",
   "domain": "vasak",
-  "chromium-args": "--disable-accelerated-video --force-cpu-draw",
   "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
