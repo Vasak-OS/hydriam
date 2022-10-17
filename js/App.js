@@ -29,6 +29,7 @@ const app = createApp({
 		this.$win.setAlwaysOnTop(true);
 		this.$win.setShowInTaskbar(false);
 		this.$win.setResizable(false);
+		this.$win.setShadow(false);
 		this.$win.focus();
 		this.$win.setPosition('center');
 
