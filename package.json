@@ -29,7 +29,8 @@
     "child_process": "^1.0.2"
   },
   "devDependencies": {
-    "eslint": "^8.23.1",
+    "eslint": "^8.25.0",
+    "eslint-plugin-css": "^0.6.0",
     "eslint-plugin-vue": "^9.5.0"
   }
 }
