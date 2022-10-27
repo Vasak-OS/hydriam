@@ -11,7 +11,7 @@ const app = createApp({
 	data() {
 		return {
 			filter: '',
-			menuData: JSON.parse(this.$execSync('python', ['/usr/share/vasak-desktop-service/vasak/get_menu.py']).stdout.toString().replaceAll('\'', '\"'))
+			menuData: JSON.parse(this.$execSync('python', ['/usr/share/vasak-desktop-service/get_menu.py']).stdout.toString().replaceAll('\'', '\"'))
 		};
 	},
 	computed: {
