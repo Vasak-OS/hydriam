@@ -1,6 +1,6 @@
 {
   "name": "hydriam",
-  "version": "0.0.7",
+  "version": "0.0.9",
   "description": "Hydriam is the official Application Launcher (or menu) of Vasak OS",
   "domain": "vasak",
   "main": "index.html",
