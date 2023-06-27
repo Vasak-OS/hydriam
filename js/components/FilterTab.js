@@ -3,12 +3,16 @@ import AppButton from './abstract/AppButton.js';
 export default {
 	props: {
 		apps: Array,
-		filter: String
+		filter: String,
 	},
 	computed: {
 		appsFiltred() {
-			return this.apps.filter(app => app.name.toLowerCase().includes(this.filter) || app.description.toLowerCase().includes(this.filter));
-		}
+			return this.apps.filter(
+				(app) =>
+					app.name.toLowerCase().includes(this.filter) ||
+					app.description.toLowerCase().includes(this.filter)
+			);
+		},
 	},
 	template: `
         <div class="col-12">
@@ -24,6 +28,6 @@ export default {
         </div>
     `,
 	components: {
-		AppButton
-	}
+		AppButton,
+	},
 };

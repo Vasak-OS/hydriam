@@ -3,7 +3,7 @@ import SessionButtom from './abstract/SessionButtom.js';
 export default {
 	data() {
 		return {
-			homePath: this.$homePath
+			homePath: this.$homePath,
 		};
 	},
 	template: `
@@ -15,7 +15,7 @@ export default {
                         <SessionButtom title="Reboot" img="/img/reboot.svg" cmd="systemctl reboot" />
                     </div>
                     <div class="col-4" id="imgDiv">
-                        <img :src="'file://' + homePath + '/.face'" class="img-fluid lynx-profile-picture user-img" id="user-img" alt="user" />
+                        <img :src="'file://' + homePath + '/.face'" class="img-fluid vsk-profile-picture user-img" id="user-img" alt="user" />
                     </div>
                     <div class="col-4 text-center">
                         <SessionButtom title="Logout" img="/img/logout.svg" cmd="loginctl terminate-session $XDG_SESSION_ID" />
@@ -26,6 +26,6 @@ export default {
         </div>
     `,
 	components: {
-		SessionButtom
-	}
+		SessionButtom,
+	},
 };

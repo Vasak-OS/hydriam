@@ -1,12 +1,14 @@
 export default {
 	props: {
-		app: Object
+		app: Object,
 	},
 	methods: {
 		openApp() {
-			this.$exec('/usr/share/vasak-desktop-service/script/runapp', [this.app.path]);
+			this.$exec('/usr/share/vasak-desktop-service/script/runapp', [
+				this.app.path,
+			]);
 			this.$win.close();
-		}
+		},
 	},
 	template: `
         <button class="btn col-2 btn-app"
@@ -19,5 +21,5 @@ export default {
             <span class='text-muted' style='display:none;'>{{app.description}}</span>
             <span style='display:none;'>{{app.keywords}}</span>
         </button>
-    `
+    `,
 };

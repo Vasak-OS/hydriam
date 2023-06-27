@@ -2,7 +2,7 @@ export default {
 	props: {
 		category: String,
 		image: String,
-		description: String
+		description: String,
 	},
 	computed: {
 		name() {
@@ -10,7 +10,7 @@ export default {
 		},
 		isActive() {
 			return this.name == 'accessories';
-		}
+		},
 	},
 	template: `
     <li class="nav-item" role="presentation">
@@ -18,5 +18,5 @@ export default {
             <img :src="'file://' + image" data-bs-toggle="tooltip" data-bs-placement="left" :title="description" class="img-fluid category-img" />
         </button>
     </li>
-    `
+    `,
 };

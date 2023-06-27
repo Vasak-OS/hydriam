@@ -3,7 +3,7 @@ import CategoryPill from './abstract/CategoryPill.js';
 
 export default {
 	props: {
-		menuData: Object
+		menuData: Object,
 	},
 	template: `
         <div class="col-12">
@@ -21,6 +21,6 @@ export default {
     `,
 	components: {
 		AppTab,
-		CategoryPill
-	}
+		CategoryPill,
+	},
 };

@@ -1,6 +1,6 @@
 export default {
 	props: {
-		filter: String
+		filter: String,
 	},
 	template: `
         <div class="col-12" id="searc-div">
@@ -10,5 +10,5 @@ export default {
                 <span class="input-group-text" id="icon-search">🔍</span>
             </div>
         </div>
-    `
+    `,
 };

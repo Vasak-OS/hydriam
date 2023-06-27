@@ -3,7 +3,7 @@ import AppButton from './AppButton.js';
 export default {
 	props: {
 		category: String,
-		data: Object
+		data: Object,
 	},
 	computed: {
 		catName() {
@@ -25,6 +25,6 @@ export default {
     </div>
     `,
 	components: {
-		AppButton
-	}
+		AppButton,
+	},
 };
