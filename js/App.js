@@ -11,7 +11,13 @@ const app = createApp({
 	data() {
 		return {
 			filter: '',
-			menuData: JSON.parse(this.$execSync('python', ['/usr/share/vasak-desktop-service/get_menu.py']).stdout.toString().replaceAll('\'', '\"'))
+			menuData: JSON.parse(
+				this.$execSync('python', [
+					'/usr/share/vasak-desktop-service/get_menu.py',
+				])
+					.stdout.toString()
+					.replaceAll("'", '"')
+			),
 		};
 	},
 	computed: {
@@ -22,7 +28,7 @@ const app = createApp({
 				apps = apps.concat(appMenu['apps']);
 			}
 			return apps;
-		}
+		},
 	},
 	async beforeMount() {
 		// Set windows Properties
@@ -33,7 +39,10 @@ const app = createApp({
 		this.$win.focus();
 		this.$win.setPosition('center');
 
-		this.$exec('python', ['/usr/share/vasak-desktop-service/setters/set_menu.py', this.pid]);
+		/*this.$exec('python', [
+			'/usr/share/vasak-desktop-service/setters/set_menu.py',
+			this.pid,
+		]);*/
 
 		this.$win.on('blur', (evt) => {
 			this.$win.close();
@@ -57,8 +66,8 @@ const app = createApp({
 		FilterTab,
 		MenuSection,
 		Search,
-		UserInfo
-	}
+		UserInfo,
+	},
 });
 
 app.config.globalProperties.$execSync = require('child_process').spawnSync;
@@ -72,13 +81,11 @@ app.mount('#menu');
 document.addEventListener('keyup', keyUpEvents);
 
 function keyUpEvents(evt) {
-
 	switch (evt.code) {
-	case 'Escape':
-		app.config.globalProperties.$win.close();
-		break;
-	default:
-		break;
+		case 'Escape':
+			app.config.globalProperties.$win.close();
+			break;
+		default:
+			break;
 	}
-
 }
