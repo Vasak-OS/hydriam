@@ -1,2 +1,12 @@
 #!/bin/bash
-nw /usr/share/hydriam/ --enable-transparent-visuals --disable-gpu &
+path="/usr/share/hydriam/"
+echo "Starting Hydriam..."
+echo "Path: $path"
+echo "Dev: $1"
+echo "----------------------"
+
+if [ $1 == "--dev" ]; then
+    nw-sdk $path --enable-transparent-visuals --disable-gpu
+else
+    nw $path --enable-transparent-visuals --disable-gpu
+fi
