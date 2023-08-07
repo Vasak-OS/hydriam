@@ -74,7 +74,7 @@ app.config.globalProperties.$execSync = require('child_process').spawnSync;
 app.config.globalProperties.$exec = require('child_process').spawn;
 app.config.globalProperties.$win = nw.Window.get();
 app.config.globalProperties.$pid = process.pid.toString();
-app.config.globalProperties.$homePath = nw.App.dataPath.concat('/../../../');
+app.config.globalProperties.$homePath = process.env.HOME + '/';
 
 app.mount('#menu');
 
