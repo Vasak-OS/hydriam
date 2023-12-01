@@ -57,6 +57,7 @@ export default defineComponent({
     apps() {
       let apps: Object[] = [];
       for (let category in this.menuData) {
+        // @ts-ignore
         const appMenu = this.menuData[category];
         apps = apps.concat(appMenu['apps']);
       }

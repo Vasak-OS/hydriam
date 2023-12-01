@@ -16,6 +16,7 @@ export default defineComponent({
   },
   computed: {
     catName() {
+      // @ts-ignore
       return this.category.replaceAll(' ', '-').toLowerCase();
     },
     isActive() {

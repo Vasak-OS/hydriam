@@ -15,9 +15,9 @@ export default defineComponent({
     }
   },
   computed: {
-    appsFiltred() {
+    appsFiltred(): Object {
       return this.apps.filter(
-        (app) =>
+        (app: any) =>
           app.name.toLowerCase().includes(this.filter) ||
           app.description.toLowerCase().includes(this.filter)
       );
