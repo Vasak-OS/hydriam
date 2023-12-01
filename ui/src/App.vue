@@ -75,14 +75,18 @@ export default defineComponent({
 
 <template>
   <div class="row">
-    <UserInfo />
-    <SearchComponent v-model:filter="filter" />
-    <template v-if="filter !== ''">
-      <FilterTab :apps="apps" :filter="filter" />
-    </template>
-    <template v-else>
-      <MenuSection :menuData="menuData" />
-    </template>
+    <div class="col-md-3">
+      <UserInfo />
+    </div>
+    <div class="col-md-9">
+      <SearchComponent v-model:filter="filter" />
+      <template v-if="filter !== ''">
+        <FilterTab :apps="apps" :filter="filter" />
+      </template>
+      <template v-else>
+        <MenuSection :menuData="menuData" />
+      </template>
+    </div>
   </div>
 </template>
 
