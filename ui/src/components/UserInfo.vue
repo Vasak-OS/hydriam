@@ -10,11 +10,11 @@ export default defineComponent({
   name: 'UserInfo',
   data() {
     return {
-      homePath: (this as any).$vsk.getHome(),
       shutdown,
       reboot,
       logout,
-      suspend
+      suspend,
+      homePath: ''
     };
   },
   methods: {
@@ -33,7 +33,18 @@ export default defineComponent({
     async suspendF() {
       await (this as any).$vsk.suspend();
       (this as any).$vsk.exit();
+    },
+    async setHomePath() {
+      this.homePath = await (this as any).$vsk.getHome();
     }
+  },
+  computed:{
+    profilePicture() {
+      return `file://${this.homePath}/.face`;
+    }
+  },
+  created() {
+    this.setHomePath();
   },
   components: {
     SessionButton
@@ -44,7 +55,7 @@ export default defineComponent({
 <template>
   <div id="user-info" class="text-center">
     <img
-      :src="'file://' + homePath + '/.face'"
+      :src="profilePicture"
       class="img-fluid vsk-profile-picture user-img"
       id="user-img"
       alt="user"
