@@ -17,6 +17,24 @@ export default defineComponent({
       suspend
     };
   },
+  methods: {
+    async logoutF() {
+      await (this as any).$vsk.logout();
+      (this as any).$vsk.exit();
+    },
+    async shutdownF() {
+      await (this as any).$vsk.shutdown();
+      (this as any).$vsk.exit();
+    },
+    async rebootF() {
+      await (this as any).$vsk.reboot();
+      (this as any).$vsk.exit();
+    },
+    async suspendF() {
+      await (this as any).$vsk.suspend();
+      (this as any).$vsk.exit();
+    }
+  },
   components: {
     SessionButton
   }
@@ -31,9 +49,9 @@ export default defineComponent({
       id="user-img"
       alt="user"
     />
-    <SessionButton title="Shutdown" :img="shutdown" cmd="systemctl poweroff" />
-    <SessionButton title="Reboot" :img="reboot" cmd="systemctl reboot" />
-    <SessionButton title="Logout" :img="logout" cmd="loginctl terminate-session $XDG_SESSION_ID" />
-    <SessionButton title="Suspend" :img="suspend" cmd="systemctl suspend" />
+    <SessionButton title="Shutdown" :img="shutdown" @click="logoutF" />
+    <SessionButton title="Reboot" :img="reboot" @click="shutdownF" />
+    <SessionButton title="Logout" :img="logout" @click="rebootF" />
+    <SessionButton title="Suspend" :img="suspend" @click="suspendF" />
   </div>
 </template>
