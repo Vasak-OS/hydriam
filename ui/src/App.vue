@@ -75,10 +75,10 @@ export default defineComponent({
 
 <template>
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-1">
       <UserInfo />
     </div>
-    <div class="col-md-9">
+    <div class="col-md-11">
       <SearchComponent v-model:filter="filter" />
       <template v-if="filter !== ''">
         <FilterTab :apps="apps" :filter="filter" />
