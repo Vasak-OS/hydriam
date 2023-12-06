@@ -48,3 +48,8 @@ class HydriamBinding(QObject):
   @pyqtSlot()
   def lock(self):
     self.powerManager.lock()
+
+  @pyqtSlot(str)
+  def openApp(self, file: str):
+    command = f"$(grep '^Exec' {file} | head -1 | sed 's/^Exec=//' | sed 's/%.//' | sed 's/^\"//g' | sed 's/\" *$//g') &"
+    os.system(command)

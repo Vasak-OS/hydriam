@@ -10,8 +10,11 @@ export default defineComponent({
     }
   },
   methods: {
-    openApp() {
-      (this as any).$vsk.openApp(this.app.path);
+    async openApp() {
+      // The app object is passed in as a prop
+      // Use the VSK API to open the app
+      await (this as any).$vsk.openApp(this.app.path);
+      (this as any).$vsk.exit();
     }
   }
 });
