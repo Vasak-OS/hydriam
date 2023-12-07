@@ -14,7 +14,7 @@ class HydriamWindow(VSKWindow):
     def set_position(self):
         self.setGeometry(0, 0, self.widthApp(), 620)
         self.setScreen(QApplication.primaryScreen())
-        self.move(QApplication.primaryScreen().availableGeometry().topLeft())
+        self.move(QApplication.primaryScreen().availableGeometry().center() - self.rect().center())
         self.setAttribute(Qt.WidgetAttribute.WA_X11NetWmWindowTypeMenu, True)
         self.setAttribute(Qt.WidgetAttribute.WA_AlwaysShowToolTips, True)
         self.setAttribute(Qt.WidgetAttribute.WA_AlwaysStackOnTop, True)  # Mantener la ventana por encima de las demás
