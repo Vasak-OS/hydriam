@@ -22,14 +22,14 @@ export default defineComponent({
 
 <template>
   <button
-    class="btn col-2 btn-app"
+    class="btn col-1 btn-app"
     data-bs-toggle="tooltip"
     data-bs-placement="top"
     :title="app.name"
     @click="openApp()"
   >
     <img :src="'file://' + app.icon" class="img-fluid" style="width: 100%" />
-    <span class="name-app text-center">{{ app.name }}</span>
+    <span class="name-app text-center" style="display: none">{{ app.name }}</span>
     <span class="text-muted" style="display: none">{{ app.description }}</span>
     <span style="display: none">{{ app.keywords }}</span>
   </button>
