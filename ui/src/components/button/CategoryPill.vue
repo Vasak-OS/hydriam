@@ -29,7 +29,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <li class="nav-item" role="presentation">
+  <li class="nav-item col-3" role="presentation">
     <button
       class="nav-link"
       :class="{ active: isActive }"
