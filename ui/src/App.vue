@@ -5,15 +5,17 @@ import MenuSection from '@/components/section/MenuSection.vue';
 import FilterSection from '@/components/section/FilterSection.vue';
 import UserInfo from '@/components/UserInfo.vue';
 import SessionButton from '@/components/button/SessionButton.vue';
-
+import CategoryPill from '@/components/button/CategoryPill.vue';
 
 import shutdown from '@/assets/img/shutdown.svg';
 import reboot from '@/assets/img/reboot.svg';
 import logout from '@/assets/img/logout.svg';
 import suspend from '@/assets/img/suspend.svg';
 
-const menuData = {
+const menuExternalData = {
   'Category 1': {
+    icon: 'icon',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae elit libero, a pharetra augue.',
     apps: [
       {
         name: 'App 1',
@@ -28,6 +30,8 @@ const menuData = {
     ]
   },
   'Category 2': {
+    icon: 'icon',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae elit libero, a pharetra augue.',
     apps: [
       {
         name: 'App 3',
@@ -48,11 +52,11 @@ export default defineComponent({
   data() {
     return {
       filter: '',
-      menuData,
+      menuExternalData,
       shutdown,
       reboot,
       logout,
-      suspend,
+      suspend
     };
   },
   created() {
@@ -60,8 +64,7 @@ export default defineComponent({
   },
   methods: {
     async setMenu() {
-      this.menuData = JSON.parse(await (this as any).$vsk.getMenuData());
-      console.log(this.menuData);
+      this.menuExternalData = JSON.parse(await (this as any).$vsk.getMenuData());
     },
     async logoutF() {
       await (this as any).$vsk.logout();
@@ -78,17 +81,20 @@ export default defineComponent({
     async suspendF() {
       await (this as any).$vsk.suspend();
       (this as any).$vsk.exit();
-    },
+    }
   },
   computed: {
     apps() {
       let apps: Object[] = [];
-      for (let category in this.menuData) {
+      for (let category in this.menuExternalData) {
         // @ts-ignore
-        const appMenu = this.menuData[category];
+        const appMenu = this.menuExternalData[category];
         apps = apps.concat(appMenu['apps']);
       }
       return apps;
+    },
+    menuData() {
+      return this.menuExternalData;
     }
   },
   components: {
@@ -96,7 +102,8 @@ export default defineComponent({
     MenuSection,
     FilterSection,
     UserInfo,
-    SessionButton
+    SessionButton,
+    CategoryPill
   }
 });
 </script>
@@ -127,7 +134,13 @@ export default defineComponent({
       </div>
 
       <div class="col-md-4"></div>
-      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <ul class="nav" id="menu-category" role="tablist">
+          <template v-for="(value, key) in menuData" :key="key">
+            <CategoryPill :category="key" :image="value.icon" :description="value.description" />
+          </template>
+        </ul>
+      </div>
     </template>
   </div>
 </template>
