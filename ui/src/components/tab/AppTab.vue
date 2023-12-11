@@ -1,6 +1,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
-import AppButton from '../button/AppButton.vue';
+import AppCard from '../card/AppCard.vue';
 
 export default defineComponent({
   name: 'AppTab',
@@ -24,14 +24,14 @@ export default defineComponent({
     }
   },
   components: {
-    AppButton
+    AppCard
   }
 });
 </script>
 
 <template>
   <div
-    class="tab-pane fade"
+    class="tab-pane fade app-tab"
     :class="{ active: isActive, show: isActive }"
     :id="catName"
     role="tabpanel"
@@ -40,7 +40,7 @@ export default defineComponent({
     <div class="container-fluid">
       <div class="row">
         <template v-for="app in data.apps" :key="app.name">
-          <AppButton :app="app" />
+          <AppCard :app="app" />
         </template>
       </div>
     </div>
