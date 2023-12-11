@@ -31,9 +31,7 @@ export default defineComponent({
         aria-label="Search"
         id="search"
         v-model="filterValue"
-        aria-describedby="icon-search"
       />
-      <span class="input-group-text" id="icon-search">🔍</span>
     </div>
   </div>
 </template>
