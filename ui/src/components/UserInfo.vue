@@ -1,39 +1,14 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
-import shutdown from '@/assets/img/shutdown.svg';
-import reboot from '@/assets/img/reboot.svg';
-import logout from '@/assets/img/logout.svg';
-import suspend from '@/assets/img/suspend.svg';
-import SessionButton from '@/components/button/SessionButton.vue';
 
 export default defineComponent({
   name: 'UserInfo',
   data() {
     return {
-      shutdown,
-      reboot,
-      logout,
-      suspend,
       homePath: ''
     };
   },
   methods: {
-    async logoutF() {
-      await (this as any).$vsk.logout();
-      (this as any).$vsk.exit();
-    },
-    async shutdownF() {
-      await (this as any).$vsk.shutdown();
-      (this as any).$vsk.exit();
-    },
-    async rebootF() {
-      await (this as any).$vsk.reboot();
-      (this as any).$vsk.exit();
-    },
-    async suspendF() {
-      await (this as any).$vsk.suspend();
-      (this as any).$vsk.exit();
-    },
     async setHomePath() {
       this.homePath = await (this as any).$vsk.getHome();
     }
@@ -46,9 +21,6 @@ export default defineComponent({
   created() {
     this.setHomePath();
   },
-  components: {
-    SessionButton
-  }
 });
 </script>
 
@@ -60,9 +32,12 @@ export default defineComponent({
       id="user-img"
       alt="user"
     />
-    <SessionButton title="Shutdown" :img="shutdown" @click="logoutF" />
-    <SessionButton title="Reboot" :img="reboot" @click="shutdownF" />
-    <SessionButton title="Logout" :img="logout" @click="rebootF" />
-    <SessionButton title="Suspend" :img="suspend" @click="suspendF" />
   </div>
 </template>
+
+<style>
+#user-info {
+  margin-top: 10px;
+  max-width: 30px;
+}
+</style>
