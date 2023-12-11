@@ -2,7 +2,7 @@
 import { defineComponent } from 'vue';
 import SearchComponent from '@/components/SearchComponent.vue';
 import MenuSection from '@/components/section/MenuSection.vue';
-import FilterTab from '@/components/tab/FilterTab.vue';
+import FilterSection from '@/components/section/FilterSection.vue';
 import UserInfo from '@/components/UserInfo.vue';
 import SessionButton from '@/components/button/SessionButton.vue';
 
@@ -94,7 +94,7 @@ export default defineComponent({
   components: {
     SearchComponent,
     MenuSection,
-    FilterTab,
+    FilterSection,
     UserInfo,
     SessionButton
   }
@@ -118,7 +118,7 @@ export default defineComponent({
 
     <template v-if="filter !== ''">
       <div class="col-12">
-        <FilterTab :apps="apps" :filter="filter" />
+        <FilterSection :apps="apps" :filter="filter" />
       </div>
     </template>
     <template v-else>

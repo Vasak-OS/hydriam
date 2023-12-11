@@ -3,7 +3,7 @@ import { defineComponent } from 'vue';
 import AppButton from '../button/AppButton.vue';
 
 export default defineComponent({
-  name: 'FilterTab',
+  name: 'FilterSection',
   props: {
     apps: {
       type: Array,
