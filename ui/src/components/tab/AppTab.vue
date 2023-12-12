@@ -20,7 +20,7 @@ export default defineComponent({
       return this.category.replaceAll(' ', '-').toLowerCase();
     },
     isActive() {
-      return this.category === 'accessories';
+      return this.catName === 'all-applications';
     }
   },
   components: {

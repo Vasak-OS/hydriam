@@ -22,7 +22,7 @@ export default defineComponent({
       return this.category.toLowerCase().replace(' ', '-');
     },
     isActive() {
-      return this.category === 'accessories';
+      return this.name === 'all-applications';
     }
   }
 });
