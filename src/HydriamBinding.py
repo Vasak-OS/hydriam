@@ -1,5 +1,6 @@
 import os
 import json
+from gi.repository import Gio
 from PyQt6.QtCore import pyqtSlot, QObject
 from Vasak.system.VSKMenuManager import VSKMenuManager
 from Vasak.system.VSKPowerManager import VSKPowerManager
@@ -51,5 +52,5 @@ class HydriamBinding(QObject):
 
   @pyqtSlot(str)
   def openApp(self, file: str):
-    command = f"$(grep '^Exec' {file} | head -1 | sed 's/^Exec=//' | sed 's/%.//' | sed 's/^\"//g' | sed 's/\" *$//g') &"
-    os.system(command)
+    desktop_file = Gio.DesktopAppInfo.new_from_filename(file)
+    desktop_file.launch_uris([], None)
