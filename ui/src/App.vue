@@ -12,7 +12,7 @@ import reboot from '@/assets/img/reboot.svg';
 import logout from '@/assets/img/logout.svg';
 import suspend from '@/assets/img/suspend.svg';
 
-const menuExternalData = {
+const menuData = {
   'Category 1': {
     icon: 'icon',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae elit libero, a pharetra augue.',
@@ -52,7 +52,7 @@ export default defineComponent({
   data() {
     return {
       filter: '',
-      menuExternalData,
+      menuData,
       shutdown,
       reboot,
       logout,
@@ -64,7 +64,7 @@ export default defineComponent({
   },
   methods: {
     async setMenu() {
-      this.menuExternalData = JSON.parse(await (this as any).$vsk.getMenuData());
+      this.menuData = JSON.parse(await (this as any).$vsk.getMenuData());
     },
     async logoutF() {
       await (this as any).$vsk.logout();
@@ -85,17 +85,8 @@ export default defineComponent({
   },
   computed: {
     apps() {
-      let apps: Object[] = [];
-      for (let category in this.menuExternalData) {
-        // @ts-ignore
-        const appMenu = this.menuExternalData[category];
-        apps = apps.concat(appMenu['apps']);
-      }
-      return apps;
+      return (this.menuData as any)['All Applications'].apps;
     },
-    menuData() {
-      return this.menuExternalData;
-    }
   },
   components: {
     SearchComponent,
@@ -110,13 +101,13 @@ export default defineComponent({
 
 <template>
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-3 user-card">
       <UserInfo />
     </div>
-    <div class="col-md-4">
+    <div class="col-md-6">
       <SearchComponent v-model:filter="filter" />
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3 session-card">
       <SessionButton title="Shutdown" :img="shutdown" @click="logoutF" />
       <SessionButton title="Reboot" :img="reboot" @click="shutdownF" />
       <SessionButton title="Logout" :img="logout" @click="rebootF" />
