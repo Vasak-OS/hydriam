@@ -34,10 +34,3 @@ export default defineComponent({
     />
   </div>
 </template>
-
-<style>
-#user-info {
-  margin-top: 10px;
-  max-width: 30px;
-}
-</style>
