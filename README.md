@@ -2,22 +2,19 @@
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Vasak-OS_hydriam&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Vasak-OS_hydriam)
 
-Hydriam is a simple and lightweight menu for Linux. It is written in JavaScript and uses HTML. 
+Hydriam is a simple and lightweight menu for Linux. It is written in python and uses VueJS. 
 
 ## Dependencies
 
 Hydriam depends on the following packages:
 
 * [Bootstrap](https://getbootstrap.com/)
-* [NW.js](https://nwjs.io/)
 * [Vue](https://vuejs.org/) (libvasak-vue)
 * libvasak-ui
 * hydriam-data
 * gnome-menus
-* python-dbus
 * python-gobject
-* gtk3
-* pyside2
+* python-pyqt6
 
 ### Build Dependencies
 
@@ -40,16 +37,20 @@ git clone git@github.com:Vasak-OS/hydriam.git
 cd hydriam
 ```
 
-3. Install dependencies
+3. Install dependencies and Build UI
 
 ```bash
-npm install
+cd ui/
+yarn install
+yarn build
+cd ..
 ```
 
 4. Start Hydriam
 
 ```bash
-nw ./
+python hydriam.py --webEngineArgs --remote-debugging-port=3030 --remote-allow-origins=http://127.0.0.1:3030 # --debug
+python hydriam.py # normal mode
 ```
 
 ## Build Hydriam
@@ -85,5 +86,4 @@ git push origin feature/battery-indicator
 
 - [Bootstrap](https://getbootstrap.com/)
 - [Vue](https://vuejs.org/)
-- [NW.js](https://nwjs.io/)
 
