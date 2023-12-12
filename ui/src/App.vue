@@ -6,6 +6,7 @@ import FilterSection from '@/components/section/FilterSection.vue';
 import UserInfo from '@/components/UserInfo.vue';
 import SessionButton from '@/components/button/SessionButton.vue';
 import CategoryPill from '@/components/button/CategoryPill.vue';
+import WeatherWidget from '@/components/widget/WeatherWidget.vue';
 
 import shutdown from '@/assets/img/shutdown.svg';
 import reboot from '@/assets/img/reboot.svg';
@@ -94,7 +95,8 @@ export default defineComponent({
     FilterSection,
     UserInfo,
     SessionButton,
-    CategoryPill
+    CategoryPill,
+    WeatherWidget
   }
 });
 </script>
@@ -124,7 +126,9 @@ export default defineComponent({
         <MenuSection :menuData="menuData" />
       </div>
 
-      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <WeatherWidget />
+      </div>
       <div class="col-md-4">
         <ul class="nav" id="menu-category" role="tablist">
           <template v-for="(value, key) in menuData" :key="key">
