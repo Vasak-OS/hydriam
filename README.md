@@ -8,17 +8,13 @@ Hydriam is a simple and lightweight menu for Linux. It is written in python and 
 
 Hydriam depends on the following packages:
 
-* [Bootstrap](https://getbootstrap.com/)
-* [Vue](https://vuejs.org/) (libvasak-vue)
-* libvasak-ui
-* hydriam-data
-* gnome-menus
-* python-gobject
-* python-pyqt6
+* [Bootstrap](https://getbootstrap.com/) ([libvasak-bootstrap](https://github.com/Vasak-OS/PKGBUILDS/blob/main/libvasak-bootstrap/PKGBUILD))
+* [libvasak-ui](https://github.com/Vasak-OS/PKGBUILDS/blob/main/libvasak-ui/PKGBUILD)
+* [hydriam-data](https://github.com/Vasak-OS/PKGBUILDS/blob/main/hydriam-data/PKGBUILD)
+* [python-libvasak](https://github.com/Vasak-OS/PKGBUILDS/blob/main/python-libvasak/PKGBUILD)
 
 ### Build Dependencies
 
-* [Node.js](https://nodejs.org/)
 * [NPM](https://www.npmjs.com/)
 
 ## Start Hydriam
