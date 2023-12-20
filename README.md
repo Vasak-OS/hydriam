@@ -83,3 +83,8 @@ git push origin feature/battery-indicator
 - [Bootstrap](https://getbootstrap.com/)
 - [Vue](https://vuejs.org/)
 
+## Contributors
+
+<a href="https://github.com/vasak-os/hydriam/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=vasak-os/hydriam" />
+</a>
