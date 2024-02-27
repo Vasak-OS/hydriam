@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { defineProps, computed } from 'vue';
-import AppButton from '../button/AppButton.vue';
+import AppButton from '@/components/button/AppButton.vue';
 
-const { apps, filter } = defineProps({
+const props = defineProps({
   apps: {
     type: Array,
     required: true
@@ -14,9 +14,9 @@ const { apps, filter } = defineProps({
 });
 
 const appsFiltred = computed((): Array<any> => {
-  return apps.filter(
+  return props.apps.filter(
     (app: any) =>
-      app.name.toLowerCase().includes(filter) || app.description.toLowerCase().includes(filter)
+      app.name.toLowerCase().includes(props.filter) || app.description.toLowerCase().includes(props.filter)
   );
 });
 </script>
