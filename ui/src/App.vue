@@ -55,7 +55,6 @@ const filter = ref('');
 
 const setMenu = async () => {
   const data = JSON.parse(await $vsk.getMenuData());
-  console.log(data);
   menuData.value = data;
 };
 
@@ -98,7 +97,7 @@ onMounted(() => {
   </div>
 
   <template v-if="filter !== ''">
-    <FilterSection v-model:apps="apps" :filter="filter" />
+    <FilterSection v-model:apps="apps" v-model:filter="filter" />
   </template>
   <template v-else>
     <MenuSection v-model:apps="appsOfCategory" />

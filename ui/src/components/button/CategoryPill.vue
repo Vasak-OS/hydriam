@@ -24,7 +24,6 @@ let { category, categorySelected } = defineProps({
 
 const setCategory = (category: string) => {
   categorySelected = category;
-  console.log(categorySelected);
   emit('update:categorySelected', categorySelected);
 };
 </script>
