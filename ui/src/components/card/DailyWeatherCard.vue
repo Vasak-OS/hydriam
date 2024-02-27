@@ -1,42 +1,34 @@
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script lang="ts" setup>
+import { defineProps } from 'vue';
 import WeatherIcon from '@/components/icon/WeatherIcon.vue';
 
-export default defineComponent({
-  name: 'DailyWeatherCard',
-  props: {
-    min: {
-      type: Number,
-      required: true
-    },
-    max: {
-      type: Number,
-      required: true
-    },
-    units: {
-      type: Object,
-      required: true
-    },
-    dayOrNight: {
-      type: String,
-      required: true
-    },
-    weatherCode: {
-      type: Number,
-      required: true
-    }
+defineProps({
+  min: {
+    type: Number,
+    required: true
   },
-  components: {
-    WeatherIcon
+  max: {
+    type: Number,
+    required: true
+  },
+  units: {
+    type: Object,
+    required: true
+  },
+  dayOrNight: {
+    type: String,
+    required: true
+  },
+  weatherCode: {
+    type: Number,
+    required: true
   }
 });
 </script>
 <template>
   <div class="col text-center">
-    <div class="col-12">
-      <WeatherIcon :code="weatherCode" :dayOrNight="dayOrNight" />
-    </div>
-    <div class="col-12 temp-text">{{ max }}</div>
-    <div class="col-12 temp-text">{{ min }}</div>
+    <WeatherIcon :code="weatherCode" :dayOrNight="dayOrNight" />
+    <div>{{ max }}</div>
+    <div>{{ min }}</div>
   </div>
 </template>

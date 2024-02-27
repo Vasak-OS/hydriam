@@ -1,51 +1,36 @@
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script lang="ts" setup>
+import { defineProps } from 'vue';
 
-export default defineComponent({
-  name: 'CategoryPill',
-  props: {
-    category: {
-      type: String,
-      required: true
-    },
-    image: {
-      type: String,
-      required: true
-    },
-    description: {
-      type: String,
-      required: true
-    }
+const emit = defineEmits(['update:categorySelected']);
+
+let { category, categorySelected } = defineProps({
+  category: {
+    type: String,
+    required: true
   },
-  computed: {
-    name() {
-      return this.category.toLowerCase().replace(' ', '-');
-    },
-    isActive() {
-      return this.name === 'all-applications';
-    }
+  image: {
+    type: String,
+    required: true
+  },
+  description: {
+    type: String,
+    required: true
+  },
+  categorySelected: {
+    type: String,
+    required: true
   }
 });
+
+const setCategory = (category: string) => {
+  categorySelected = category;
+  console.log(categorySelected);
+  emit('update:categorySelected', categorySelected);
+};
 </script>
 
 <template>
-  <li class="nav-item col-3" role="presentation">
-    <button
-      class="nav-link"
-      :class="{ active: isActive }"
-      data-bs-toggle="tab"
-      role="tab"
-      aria-selected="true"
-      :data-bs-target="'#' + name"
-      :id="name + '-tab'"
-    >
-      <img
-        :src="'file://' + image"
-        data-bs-toggle="tooltip"
-        data-bs-placement="left"
-        :title="description"
-        class="img-fluid category-img"
-      />
-    </button>
-  </li>
+  <button @click="setCategory(category)">
+    <img :src="'file://' + image" :title="description" :alt="category" />
+  </button>
 </template>

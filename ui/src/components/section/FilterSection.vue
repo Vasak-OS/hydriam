@@ -1,44 +1,28 @@
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script lang="ts" setup>
+import { defineProps, computed } from 'vue';
 import AppButton from '../button/AppButton.vue';
 
-export default defineComponent({
-  name: 'FilterSection',
-  props: {
-    apps: {
-      type: Array,
-      required: true
-    },
-    filter: {
-      type: String,
-      required: true
-    }
+const { apps, filter } = defineProps({
+  apps: {
+    type: Array,
+    required: true
   },
-  computed: {
-    appsFiltred(): Object {
-      return this.apps.filter(
-        (app: any) =>
-          app.name.toLowerCase().includes(this.filter) ||
-          app.description.toLowerCase().includes(this.filter)
-      );
-    }
-  },
-  components: {
-    AppButton
+  filter: {
+    type: String,
+    required: true
   }
+});
+
+const appsFiltred = computed((): Array<any> => {
+  return apps.filter(
+    (app: any) =>
+      app.name.toLowerCase().includes(filter) || app.description.toLowerCase().includes(filter)
+  );
 });
 </script>
 
 <template>
-  <div class="col-12">
-    <div class="tab-content" id="menu-content">
-      <div class="container-fluid">
-        <div class="row">
-          <template v-for="app in appsFiltred" :key="app.name">
-            <AppButton :app="app" />
-          </template>
-        </div>
-      </div>
-    </div>
+  <div class="hydriam-search-results">
+    <AppButton v-for="app in appsFiltred" :key="app.name" :app="app" />
   </div>
 </template>

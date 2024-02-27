@@ -1,9 +1,9 @@
-<script lang="ts">
-import { defineComponent } from 'vue';
-import CurrentWeatherCard from '../card/CurrentWeatherCard.vue';
-import DailyWeatherCard from '../card/DailyWeatherCard.vue';
+<script lang="ts" setup>
+import { ref, computed, onMounted } from 'vue';
+import CurrentWeatherCard from '@/components/card/CurrentWeatherCard.vue';
+import DailyWeatherCard from '@/components/card/DailyWeatherCard.vue';
 
-const weather = {
+const weather = ref({
   latitude: 52.52,
   longitude: 13.419998,
   generationtime_ms: 0.06401538848876953,
@@ -45,67 +45,52 @@ const weather = {
     temperature_2m_max: [7.0, 4.3, 3.7, 5.1, 7.8, 9.5, 8.2],
     temperature_2m_min: [3.0, 1.0, 1.1, 0.1, 4.8, 8.0, 6.6]
   }
+});
+
+const getLocation = async () => {
+  const location = await fetch('http://ip-api.com/json/')
+    .then((res) => res.json())
+    .then((data) => data);
+  return location;
 };
 
-export default defineComponent({
-  name: 'WeatherWidget',
-  data() {
-    return {
-      weather
-    };
-  },
-  methods: {
-    async getLocation() {
-      const location = await fetch('http://ip-api.com/json/')
-        .then((res) => res.json())
-        .then((data) => data);
-      return location;
-    },
-    async getWeather() {
-      const location = await this.getLocation();
-      const weather = await fetch(
-        `https://api.open-meteo.com/v1/forecast?latitude=${location.lat}&longitude=${location.lon}&current=temperature_2m,is_day,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min`
-      )
-        .then((res) => res.json())
-        .then((data) => data);
-      this.weather = weather;
-    }
-  },
-  computed: {
-    dayOrNight() {
-      return this.weather.current.is_day ? 'day' : 'night';
-    }
-  },
-  created() {
-    this.getWeather();
-  },
-  components: {
-    CurrentWeatherCard,
-    DailyWeatherCard
-  }
+const getWeather = async () => {
+  const location = await getLocation();
+  const weather = await fetch(
+    `https://api.open-meteo.com/v1/forecast?latitude=${location.lat}&longitude=${location.lon}&current=temperature_2m,is_day,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min`
+  )
+    .then((res) => res.json())
+    .then((data) => data);
+  return weather;
+};
+
+const dayOrNight = computed(() => {
+  return weather.value.current.is_day ? 'day' : 'night';
+});
+
+onMounted(async () => {
+  weather.value = await getWeather();
 });
 </script>
 
 <template>
-  <div class="widget-card col-12">
+  <div class="hydriam-widget-weather">
     <template v-if="weather">
       <CurrentWeatherCard
         :current="weather.current"
         :units="weather.current_units"
         :dayOrNight="dayOrNight"
       />
-      <div class="container">
-        <div class="row">
-          <template v-for="(value, key) in weather.daily.time" :key="key">
-            <DailyWeatherCard
-              :min="weather.daily.temperature_2m_min[key]"
-              :max="weather.daily.temperature_2m_max[key]"
-              :units="weather.daily_units"
-              :dayOrNight="dayOrNight"
-              :weatherCode="weather.daily.weather_code[key]"
-            />
-          </template>
-        </div>
+      <div class="hydriam-widget-weather-forecast">
+        <DailyWeatherCard
+          v-for="(value, key) in weather.daily.time"
+          :key="key"
+          :min="weather.daily.temperature_2m_min[key]"
+          :max="weather.daily.temperature_2m_max[key]"
+          :units="weather.daily_units"
+          :dayOrNight="dayOrNight"
+          :weatherCode="weather.daily.weather_code[key]"
+        />
       </div>
     </template>
     <template v-else> NO se puede cargar el clima </template>

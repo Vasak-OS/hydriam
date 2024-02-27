@@ -1,36 +1,23 @@
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script lang="ts" setup>
+import { inject, computed, ref, onMounted } from 'vue';
 
-export default defineComponent({
-  name: 'UserInfo',
-  data() {
-    return {
-      homePath: ''
-    };
-  },
-  methods: {
-    async setHomePath() {
-      this.homePath = await (this as any).$vsk.getHome();
-    }
-  },
-  computed:{
-    profilePicture() {
-      return `file://${this.homePath}/.face`;
-    }
-  },
-  created() {
-    this.setHomePath();
-  },
+const $vsk: any = inject('vsk');
+const homePath = ref('');
+
+const profilePicture = computed(() => `file://${homePath.value}/.face`);
+
+const setHomePath = async () => {
+  homePath.value = await $vsk.getHome();
+};
+
+onMounted(() => {
+  setHomePath();
 });
+
 </script>
 
 <template>
-  <div id="user-info" class="text-center">
-    <img
-      :src="profilePicture"
-      class="img-fluid vsk-profile-picture user-img"
-      id="user-img"
-      alt="user"
-    />
+  <div id="user-info" class="hydriam-user">
+    <img :src="profilePicture" alt="user" />
   </div>
 </template>

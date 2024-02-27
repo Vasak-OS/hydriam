@@ -1,36 +1,26 @@
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script lang="ts" setup>
+import { defineProps, inject } from 'vue';
 
-export default defineComponent({
-  name: 'AppButton',
-  props: {
-    app: {
-      type: Object,
-      required: true
-    }
-  },
-  methods: {
-    async openApp() {
-      // The app object is passed in as a prop
-      // Use the VSK API to open the app
-      await (this as any).$vsk.openApp(this.app.path);
-      (this as any).$vsk.exit();
-    }
+const $vsk: any = inject('$vsk');
+
+const { app } = defineProps({
+  app: {
+    type: Object,
+    required: true
   }
 });
+
+const openApp = async () => {
+  await $vsk.openApp(app.path);
+  $vsk.exit();
+};
 </script>
 
 <template>
-  <button
-    class="btn col-1 btn-app"
-    data-bs-toggle="tooltip"
-    data-bs-placement="top"
-    :title="app.name"
-    @click="openApp()"
-  >
-    <img :src="'file://' + app.icon" class="img-fluid" style="width: 100%" />
-    <span class="name-app text-center" style="display: none">{{ app.name }}</span>
-    <span class="text-muted" style="display: none">{{ app.description }}</span>
+  <button :title="app.name" @click="openApp()">
+    <img :src="'file://' + app.icon" />
+    <span style="display: none">{{ app.name }}</span>
+    <span style="display: none">{{ app.description }}</span>
     <span style="display: none">{{ app.keywords }}</span>
   </button>
 </template>

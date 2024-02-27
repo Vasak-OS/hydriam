@@ -1,27 +1,17 @@
-<script lang="ts">
-import { defineComponent } from 'vue';
-import AppTab from '../tab/AppTab.vue';
+<script lang="ts" setup>
+import { defineProps } from 'vue';
+import AppCard from '@/components/card/AppCard.vue';
 
-export default defineComponent({
-  name: 'MenuSection',
-  props: {
-    menuData: {
-      type: Object,
-      required: true
-    }
-  },
-  components: {
-    AppTab
+defineProps({
+  apps: {
+    type: Array<any>,
+    required: true
   }
 });
 </script>
 
 <template>
-  <div class="col-12">
-    <div class="tab-content" id="menu-content">
-      <template v-for="(value, key) in menuData" :key="key">
-        <AppTab :category="key" :data="value" />
-      </template>
-    </div>
+  <div class="hydriam-applications" >
+    <AppCard v-for="app in apps" :key="app.name" :app="app" />
   </div>
 </template>

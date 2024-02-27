@@ -1,5 +1,5 @@
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script lang="ts" setup>
+import { ref, inject, onMounted, computed } from 'vue';
 import SearchComponent from '@/components/SearchComponent.vue';
 import MenuSection from '@/components/section/MenuSection.vue';
 import FilterSection from '@/components/section/FilterSection.vue';
@@ -13,10 +13,12 @@ import reboot from '@/assets/img/reboot.svg';
 import logout from '@/assets/img/logout.svg';
 import suspend from '@/assets/img/suspend.svg';
 
-const menuData = {
+const $vsk = inject('vsk') as any;
+const menuData = ref({
   'Category 1': {
     icon: 'icon',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae elit libero, a pharetra augue.',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae elit libero, a pharetra augue.',
     apps: [
       {
         name: 'App 1',
@@ -32,7 +34,8 @@ const menuData = {
   },
   'Category 2': {
     icon: 'icon',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae elit libero, a pharetra augue.',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae elit libero, a pharetra augue.',
     apps: [
       {
         name: 'App 3',
@@ -46,98 +49,73 @@ const menuData = {
       }
     ]
   }
+});
+const categorySelected = ref('All Applications');
+const filter = ref('');
+
+const setMenu = async () => {
+  const data = JSON.parse(await $vsk.getMenuData());
+  console.log(data);
+  menuData.value = data;
 };
 
-export default defineComponent({
-  name: 'App',
-  data() {
-    return {
-      filter: '',
-      menuData,
-      shutdown,
-      reboot,
-      logout,
-      suspend
-    };
-  },
-  created() {
-    this.setMenu();
-  },
-  methods: {
-    async setMenu() {
-      this.menuData = JSON.parse(await (this as any).$vsk.getMenuData());
-    },
-    async logoutF() {
-      await (this as any).$vsk.logout();
-      (this as any).$vsk.exit();
-    },
-    async shutdownF() {
-      await (this as any).$vsk.shutdown();
-      (this as any).$vsk.exit();
-    },
-    async rebootF() {
-      await (this as any).$vsk.reboot();
-      (this as any).$vsk.exit();
-    },
-    async suspendF() {
-      await (this as any).$vsk.suspend();
-      (this as any).$vsk.exit();
-    }
-  },
-  computed: {
-    apps() {
-      return (this.menuData as any)['All Applications'].apps;
-    },
-  },
-  components: {
-    SearchComponent,
-    MenuSection,
-    FilterSection,
-    UserInfo,
-    SessionButton,
-    CategoryPill,
-    WeatherWidget
-  }
+const logoutF = async () => {
+  await $vsk.logout();
+  $vsk.exit();
+};
+
+const shutdownF = async () => {
+  await $vsk.shutdown();
+  $vsk.exit();
+};
+
+const rebootF = async () => {
+  await $vsk.reboot();
+  $vsk.exit();
+};
+
+const suspendF = async () => {
+  await $vsk.suspend();
+  $vsk.exit();
+};
+
+const apps = computed(() => (menuData.value as any)['All Applications']?.apps);
+const appsOfCategory = computed(() => (menuData.value as any)[categorySelected.value]?.apps);
+
+onMounted(() => {
+  setMenu();
 });
 </script>
 
 <template>
-  <div class="row">
-    <div class="col-md-3 user-card">
-      <UserInfo />
-    </div>
-    <div class="col-md-6">
-      <SearchComponent v-model:filter="filter" />
-    </div>
-    <div class="col-md-3 session-card">
-      <SessionButton title="Shutdown" :img="shutdown" @click="logoutF" />
-      <SessionButton title="Reboot" :img="reboot" @click="shutdownF" />
-      <SessionButton title="Logout" :img="logout" @click="rebootF" />
-      <SessionButton title="Suspend" :img="suspend" @click="suspendF" />
-    </div>
-
-    <template v-if="filter !== ''">
-      <div class="col-12">
-        <FilterSection :apps="apps" :filter="filter" />
-      </div>
-    </template>
-    <template v-else>
-      <div class="col-md-4">
-        <MenuSection :menuData="menuData" />
-      </div>
-
-      <div class="col-md-4">
-        <WeatherWidget />
-      </div>
-      <div class="col-md-4">
-        <ul class="nav" id="menu-category" role="tablist">
-          <template v-for="(value, key) in menuData" :key="key">
-            <CategoryPill :category="key" :image="value.icon" :description="value.description" />
-          </template>
-        </ul>
-      </div>
-    </template>
+  <UserInfo />
+  <SearchComponent v-model:filter="filter" />
+  <div class="hydriam-session">
+    <SessionButton title="Shutdown" :img="shutdown" @click="logoutF" />
+    <SessionButton title="Reboot" :img="reboot" @click="shutdownF" />
+    <SessionButton title="Logout" :img="logout" @click="rebootF" />
+    <SessionButton title="Suspend" :img="suspend" @click="suspendF" />
   </div>
-</template>
 
-<style scoped></style>
+  <template v-if="filter !== ''">
+    <FilterSection v-model:apps="apps" :filter="filter" />
+  </template>
+  <template v-else>
+    <MenuSection v-model:apps="appsOfCategory" />
+
+    <div class="hydriam-widgets">
+      <WeatherWidget />
+    </div>
+
+    <div class="hydriam-categories">
+      <CategoryPill
+        v-for="(value, key) in menuData"
+        :key="key"
+        :category="key"
+        :image="value.icon"
+        :description="value.description"
+        v-model:categorySelected="categorySelected"
+      />
+    </div>
+  </template>
+</template>

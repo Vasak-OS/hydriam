@@ -1,23 +1,15 @@
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script lang="ts" setup>
+import { defineProps } from 'vue';
 
-export default defineComponent({
-  name: 'SessionButton',
-  props: {
-    title: String,
-    img: String,
-  }
+defineProps({
+  title: String,
+  img: String
 });
+
 </script>
 
 <template>
-  <a
-    data-bs-toggle="tooltip"
-    data-bs-placement="left"
-    :title="title"
-    href="#"
-    class="btn btn-primary btn-session"
-  >
-    <img :src="img" class="img-fluid" style="filter: drop-shadow(1px 1px 3px #222)" />
+  <a :title="title" href="#">
+    <img :src="img" :alt="title" />
   </a>
 </template>
