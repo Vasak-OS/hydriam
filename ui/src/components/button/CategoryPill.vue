@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import { defineProps } from 'vue';
+import { defineProps, computed } from 'vue';
 
 const emit = defineEmits(['update:categorySelected']);
 
-let { category, categorySelected } = defineProps({
+const props = defineProps({
   category: {
     type: String,
     required: true
@@ -23,13 +23,16 @@ let { category, categorySelected } = defineProps({
 });
 
 const setCategory = (category: string) => {
-  categorySelected = category;
-  emit('update:categorySelected', categorySelected);
+  emit('update:categorySelected', category);
 };
+
+const isActive = computed(() => {
+  return props.category === props.categorySelected ? 'active' : '';
+});
 </script>
 
 <template>
-  <button @click="setCategory(category)">
+  <button :class="isActive" @click="setCategory(category)">
     <img :src="'file://' + image" :title="description" :alt="category" />
   </button>
 </template>
