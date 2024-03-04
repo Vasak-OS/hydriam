@@ -83,6 +83,7 @@ const appsOfCategory = computed(() => (menuData.value as any)[categorySelected.v
 
 onMounted(() => {
   setMenu();
+  $vsk.loadUIConfig();
 });
 </script>
 

@@ -27,6 +27,10 @@ class HydriamBinding(QObject):
     return json.dumps(self.menuManager.items(), indent=2)
   
   @pyqtSlot()
+  def loadUIConfig(self):
+    self.window.load_ui_config()
+  
+  @pyqtSlot()
   def exit(self):
     self.app.quit()
 
