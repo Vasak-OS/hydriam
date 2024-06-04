@@ -2,8 +2,8 @@ import os
 import json
 from gi.repository import Gio
 from PyQt6.QtCore import pyqtSlot, QObject
-from Vasak.system.VSKMenuManager import VSKMenuManager
-from Vasak.system.VSKPowerManager import VSKPowerManager
+from Vasak.system.vsk_menu_manager import VSKMenuManager
+from Vasak.system.vsk_power_manager import VSKPowerManager
 
 class HydriamBinding(QObject):
   def __init__(self, window, app):

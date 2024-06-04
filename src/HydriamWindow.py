@@ -1,5 +1,5 @@
-from Vasak.VSKWindow import VSKWindow
-from Vasak.system.VSKConfigManager import VSKConfigManager
+from Vasak.vsk_window import VSKWindow
+from Vasak.system.vsk_config_manager import VSKConfigManager
 from src.HydriamBinding import HydriamBinding
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QApplication
