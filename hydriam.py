@@ -1,7 +1,7 @@
 import sys
 import signal
 import os
-from src.HydriamWindow import HydriamWindow
+from src.hydriam_window import HydriamWindow
 from PyQt6.QtCore import QFileSystemWatcher
 from PyQt6.QtWidgets import QApplication
 
