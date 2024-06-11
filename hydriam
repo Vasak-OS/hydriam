@@ -1,5 +1,5 @@
 #!/bin/bash
-path="/usr/share/hydriam/"
+path="/usr/share/hydriam/hydriam.py"
 echo "Starting Hydriam..."
 echo "Path: $path"
 echo "Dev: $1"
